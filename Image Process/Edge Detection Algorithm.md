@@ -60,9 +60,5 @@ Now the algorithm can be broken down into its constituent steps
 6 Set the pixels to the new values
 ```
 
-## 3 Extended
 
-With the lib, we can implement some other image processing algorithms. The algorithm we will look at is this tutorial is a fairly basic one. The aim is apply a Colour Key to an image, picking out a specific colour or range of colours in the image and removing them, or replace them with a seperate background image. //背景颜色替换
-
-[Page link](http://www.cl.cam.ac.uk/projects/raspberrypi/tutorials/image-processing/colour_key.html)
 
