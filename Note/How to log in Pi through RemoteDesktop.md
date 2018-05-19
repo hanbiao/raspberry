@@ -1,4 +1,4 @@
-# how to enter startX #
+# how to log in through Remote Desktop #
 
 [page link](https://www.zhihu.com/question/22556729)
 
