@@ -56,7 +56,7 @@ $ sudo apt-get install libxvidcore-dev libx264-dev
 We need to install the GTK development library so we can compile the highgui  sub-module of OpenCV, which allows us to display images to our screen and build simple GUI interfaces 
 
 ```
-$ sudo apt-get install libgtk2.0-dev
+$ sudo apt-get install libgtk2.0-dev  //一定要安装正常，否则图像和视频都带不开
 ```
 
 Various operations inside of OpenCV (such as matrix operations) can be optimized using added dependencies 
@@ -202,3 +202,10 @@ $ python
 ...
 ```
 
+> 注意：
+>
+> 一定要安装所有的依赖包，特别是libgtk2.0-dev,否则程序运行会报错，很多函数不能调用
+>
+> 如果没有装依赖文件，需要安装后重新make下源文件，然后安装重新安装一下，需要把
+>
+> /usr/local/include里面的文件删掉，然后重新创建软连接
