@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<!-- saved from url=(0063)https://www.raspberrypi.org/documentation/configuration/uart.md -->
+<html lang="en-GB"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <title>The Raspberry Pi UARTs - Raspberry Pi Documentation</title>
+    <meta name="description" content="Documentation in this section includes basic guides to configuring your Raspberry Pi.">
+    <link rel="icon" type="image/png" href="https://www.raspberrypi.org/app/themes/mind-control/images/favicon.png">
+    <link rel="publisher" href="https://plus.google.com/+RaspberryPi">
+    <link rel="preconnect stylesheet" href="./The Raspberry Pi UARTs - Raspberry Pi Documentation_files/css" media="all" type="text/css">
+    <link rel="stylesheet" href="./The Raspberry Pi UARTs - Raspberry Pi Documentation_files/legacy.min.css">
+    <link rel="stylesheet" href="./The Raspberry Pi UARTs - Raspberry Pi Documentation_files/prism.css">
+    <script type="text/javascript" async="" src="./The Raspberry Pi UARTs - Raspberry Pi Documentation_files/ga.js.下载"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="./The Raspberry Pi UARTs - Raspberry Pi Documentation_files/prism.js.下载"></script>
+
+    <script type="text/javascript">//<![CDATA[
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-46270871-1']);
+        _gaq.push(['_trackPageview']);
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+        //]]></script>
+
+    <link rel="canonical" href="https://www.raspberrypi.org/">
+    <link rel="shortlink" href="https://www.raspberrypi.org/">
+<style type="text/css">/*
+ * contextMenu.js v 1.4.0
+ * Author: Sudhanshu Yadav
+ * s-yadav.github.com
+ * Copyright (c) 2013 Sudhanshu Yadav.
+ * Dual licensed under the MIT and GPL licenses
+**/
+
+.iw-contextMenu {
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.10) !important;
+    border: 1px solid #c8c7cc !important;
+    border-radius: 11px !important;
+    display: none;
+    z-index: 1000000132;
+    max-width: 300px !important;
+    width: auto !important;
+}
+
+.dark-mode .iw-contextMenu,
+.TnITTtw-dark-mode.iw-contextMenu,
+.TnITTtw-dark-mode .iw-contextMenu {
+    border-color: #747473 !important;
+}
+
+.iw-cm-menu {
+    background: #fff !important;
+    color: #000 !important;
+    margin: 0px !important;
+    padding: 0px !important;
+    overflow: visible !important;
+}
+
+.dark-mode .iw-cm-menu,
+.TnITTtw-dark-mode.iw-cm-menu,
+.TnITTtw-dark-mode .iw-cm-menu {
+    background: #525251 !important;
+    color: #FFF !important;
+}
+
+.iw-curMenu {
+}
+
+.iw-cm-menu li {
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, Ubuntu, sans-serif !important;
+    list-style: none !important;
+    padding: 10px !important;
+    padding-right: 20px !important;
+    border-bottom: 1px solid #c8c7cc !important;
+    font-weight: 400 !important;
+    cursor: pointer !important;
+    position: relative !important;
+    font-size: 14px !important;
+    margin: 0 !important;
+    line-height: inherit !important;
+    border-radius: 0 !important;
+    display: block !important;
+}
+
+.dark-mode .iw-cm-menu li, .TnITTtw-dark-mode .iw-cm-menu li {
+    border-bottom-color: #747473 !important;
+}
+
+.iw-cm-menu li:first-child {
+    border-top-left-radius: 11px !important;
+    border-top-right-radius: 11px !important;
+}
+
+.iw-cm-menu li:last-child {
+    border-bottom-left-radius: 11px !important;
+    border-bottom-right-radius: 11px !important;
+    border-bottom: none !important;
+}
+
+.iw-mOverlay {
+    position: absolute !important;
+    width: 100% !important;
+    height: 100% !important;
+    top: 0px !important;
+    left: 0px !important;
+    background: #FFF !important;
+    opacity: .5 !important;
+}
+
+.iw-contextMenu li.iw-mDisable {
+    opacity: 0.3 !important;
+    cursor: default !important;
+}
+
+.iw-mSelected {
+    background-color: #F6F6F6 !important;
+}
+
+.dark-mode .iw-mSelected, .TnITTtw-dark-mode .iw-mSelected {
+    background-color: #676766 !important;
+}
+
+.iw-cm-arrow-right {
+    width: 0 !important;
+    height: 0 !important;
+    border-top: 5px solid transparent !important;
+    border-bottom: 5px solid transparent !important;
+    border-left: 5px solid #000 !important;
+    position: absolute !important;
+    right: 5px !important;
+    top: 50% !important;
+    margin-top: -5px !important;
+}
+
+.dark-mode .iw-cm-arrow-right, .TnITTtw-dark-mode .iw-cm-arrow-right {
+    border-left-color: #FFF !important;
+}
+
+.iw-mSelected > .iw-cm-arrow-right {
+}
+
+/*context menu css end */</style><style type="text/css">@-webkit-keyframes load4 {
+    0%,
+    100% {
+        box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;
+    }
+    12.5% {
+        box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+    }
+    25% {
+        box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+    }
+    37.5% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em, -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
+    }
+    50% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em, -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
+    }
+    62.5% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0, -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
+    }
+    75% {
+        box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
+    }
+    87.5% {
+        box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
+    }
+}
+
+@keyframes load4 {
+    0%,
+    100% {
+        box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;
+    }
+    12.5% {
+        box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+    }
+    25% {
+        box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+    }
+    37.5% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em, -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
+    }
+    50% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em, -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
+    }
+    62.5% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0, -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
+    }
+    75% {
+        box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
+    }
+    87.5% {
+        box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
+    }
+}</style><style type="text/css">/* This is not a zero-length file! */</style></head>
+
+<body class="documentation">
+    <header class="o-header">
+        <nav class="o-container o-header__container">
+            <a class="o-header__home-link" href="https://www.raspberrypi.org/">
+                <span class="u-visually-hidden">Home</span>
+            </a>
+
+            <div class="o-header__nav">
+                <ul class="c-nav">
+                                            <li class="c-nav__item">
+                            <a class="c-nav__link c-nav__link--products" href="https://www.raspberrypi.org/products/">
+                                Products                            </a>
+                        </li>
+                                            <li class="c-nav__item">
+                            <a class="c-nav__link c-nav__link--blog" href="https://www.raspberrypi.org/blog/">
+                                Blog                            </a>
+                        </li>
+                                            <li class="c-nav__item">
+                            <a class="c-nav__link c-nav__link--downloads" href="https://www.raspberrypi.org/downloads/">
+                                Downloads                            </a>
+                        </li>
+                                            <li class="c-nav__item">
+                            <a class="c-nav__link c-nav__link--community" href="https://www.raspberrypi.org/community/">
+                                Community                            </a>
+                        </li>
+                                            <li class="c-nav__item">
+                            <a class="c-nav__link c-nav__link--help" href="https://www.raspberrypi.org/help/">
+                                Help                            </a>
+                        </li>
+                                            <li class="c-nav__item">
+                            <a class="c-nav__link c-nav__link--forums" href="https://www.raspberrypi.org/forums/">
+                                Forums                            </a>
+                        </li>
+                                            <li class="c-nav__item">
+                            <a class="c-nav__link c-nav__link--education" href="https://www.raspberrypi.org/education/">
+                                Education                            </a>
+                        </li>
+                                            <li class="c-nav__item">
+                            <a class="c-nav__link c-nav__link--projects" href="https://projects.raspberrypi.org/?ref=nav">
+                                Projects                            </a>
+                        </li>
+                                    </ul>
+            </div>
+
+            <div class="o-header__spacer"></div>
+
+            <div class="o-header__search-toggle">
+                <span aria-hidden="true" class="c-search-toggle">
+                    <span class="u-visually-hidden">Open Search Input</span>
+                </span>
+            </div>
+
+            <div class="o-header__toggle">
+                <span aria-hidden="true" class="c-nav-toggle">
+                    <span class="c-nav-toggle__icon">
+                        <span class="c-nav-toggle__icon-inner">
+                            <span class="u-visually-hidden">Open Navigation</span>
+                        </span>
+                    </span>
+                </span>
+            </div>
+        </nav>
+    </header>
+
+    <div class="o-header__search">
+        <form action="https://www.raspberrypi.org/" class="c-search" role="search" method="GET">
+            <div class="o-container c-search__container">
+                <input type="search" class="c-search__input" placeholder="Search Raspberry Pi" name="s">
+                <button class="c-search__submit">Search</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        var header = document.querySelector('.o-header')
+        var navToggle = document.querySelector('.c-nav-toggle')
+
+        navToggle.addEventListener('click', function (event) {
+            event.preventDefault()
+
+            header.classList.toggle('o-header--nav-open')
+
+            document.querySelector('.c-nav-toggle__icon').classList.toggle('c-nav-toggle__icon--open')
+            document.querySelector('.c-nav-toggle__icon-inner').classList.toggle('c-nav-toggle__icon-inner--open')
+        })
+
+        var searchToggle = document.querySelector('.c-search-toggle')
+
+        searchToggle.addEventListener('click', function (event) {
+            event.preventDefault()
+
+            var searchContainer = document.querySelector('.o-header__search')
+            var searchInput = document.querySelector('.c-search__input')
+
+            searchInput.blur()
+            searchToggle.classList.toggle('c-search-toggle--open')
+            searchContainer.classList.toggle('o-header__search--open')
+
+            if (searchContainer.classList.contains('o-header__search--open')) {
+                searchInput.focus()
+            }
+        })
+    </script>
+
+    <div class="container">
+        <div class="main">
+
+<nav class="breadcrumbs">
+    <a href="https://www.raspberrypi.org/documentation">documentation</a> &gt; <a href="https://www.raspberrypi.org/documentation/configuration">configuration</a> &gt; uart</nav>
+
+<article class="entry-content">
+    <h1>The Raspberry Pi UARTs</h1>
+<p>The SoCs used on the Raspberry Pis have two built-in UARTs, a <a href="http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0183g/index.html">PL011</a> and a mini UART. They are implemented using different hardware blocks, so they have slightly different characteristics. However, both are 3.3V devices, which means extra care must be taken when connecting up to an RS232 or other system that utilises different voltage levels. An adapter must be used to convert the voltage levels between the two protocols. Alternatively, 3.3V USB UART adapters can be purchased for very low prices. </p>
+<p>By default, on Raspberry Pis equipped with the wireless/Bluetooth module (Raspberry Pi 3 and Raspberry Pi Zero W), the PL011 UART is connected to the Bluetooth module, while the mini UART is used as the primary UART and will have a Linux console on it. On all other models, the PL011 is used as the primary UART. </p>
+<p>In Linux device terms, by default, /dev/ttyS0 refers to the mini UART, and /dev/ttyAMA0 refers to the PL011. The primary UART is the one assigned to the Linux console, which depends on the Raspberry Pi model as described above. There are also symlinks: /dev/serial0, which always refers to the primary UART (if enabled), and /dev/serial1, which similarly always refers to the secondary UART (if enabled).</p>
+<h2>Mini UART and CPU core frequency</h2>
+<p>The baud rate of the mini UART is linked to the core frequency of the VPU on the VC4 GPU. This means that, as the VPU frequency governor varies the core frequency, the baud rate of the mini UART also changes. This makes the mini UART of limited use in the default state. By default, if the mini UART is selected for use as the primary UART, it will be disabled. To enable it, add <code>enable_uart=1</code> to config.txt. This will also fix the core frequency to 250MHz (unless <code>force_turbo</code> is set, when it will be fixed to the VPU turbo frequency). When the mini UART is not the primary UART, for example you are using it to connect to the Bluetooth controller, you must add <code>core_freq=250</code> to config.txt, otherwise the mini UART will not work.</p>
+<p>The default value of the <code>enable_uart</code> flag depends on the actual roles of the UARTs, so that if ttyAMA0 is assigned to the Bluetooth module, <code>enable_uart</code> defaults to 0. If the mini UART is assigned to the Bluetooth module, then <code>enable_uart</code> defaults to 1. Note that if the UARTs are reassigned using a Device Tree Overlay (see below), <code>enable_uart</code> defaults will still obey this rule.</p>
+<h2>Disabling Linux's use of console UART</h2>
+<p>In a default install of Raspbian, the primary UART (serial0) is assigned to the Linux console. Using the serial port for other purposes requires this default behaviour to be changed. On startup, <code>systemd</code> checks the Linux kernel command line for any console entries, and will use the console defined therein. To stop this behaviour, the serial console setting needs to be removed from command line.</p>
+<p>This can be done by using the <a href="https://www.raspberrypi.org/documentation/configuration/raspi-config.md">raspi-config</a> utility, or manually.</p>
+<pre><code>sudo raspi-config</code></pre>
+<p>Select option 5, <strong>Interfacing options</strong>, then option P6, <strong>Serial</strong>, and select <strong>No</strong>. Exit raspi-config.</p>
+<p>To manually change the settings, edit the kernel command line with <code>sudo nano /boot/cmdline.txt</code>. Find the console entry that refers to the serial0 device, and remove it, including the baud rate setting. It will look something like <code>console=serial0,115200</code>. Make sure the rest of the line remains the same, as errors in this configuration can stop the Raspberry Pi from booting.</p>
+<p>Reboot the Raspberry Pi for the change to take effect.</p>
+<h2>UART output on GPIO pins</h2>
+<p>By default, the UART transmit and receive pins are on GPIO 14 and GPIO 15 respectively, which are pins 8 and 10 on the GPIO header.</p>
+<h2>UARTs and Device Tree</h2>
+<p>Various UART Device Tree Overlay definitions can be found in the kernel github tree. The two most useful overlays are <a href="https://github.com/raspberrypi/linux/blob/rpi-4.11.y/arch/arm/boot/dts/overlays/disable-bt-overlay.dts"><code>disable-bt</code></a> and <a href="https://github.com/raspberrypi/linux/blob/rpi-4.11.y/arch/arm/boot/dts/overlays/miniuart-bt-overlay.dts"><code>miniuart-bt</code></a>.</p>
+<p><code>disable-bt</code> disables the Bluetooth device and restores UART0/ttyAMA0 to GPIOs 14 and 15. It is also necessary to disable the system service that initialises the modem so it doesn't use the UART: <code>sudo systemctl disable hciuart</code>.</p>
+<p><code>miniuart-bt</code> switches the Raspberry Pi 3 and Raspberry Pi Zero W Bluetooth function to use the mini UART (ttyS0), and restores UART0/ttyAMA0 to GPIOs 14 and 15. Note that this may reduce the maximum usable baudrate (see mini UART limitations below). It is also necessary to edit /lib/systemd/system/hciuart.service and replace ttyAMA0 with ttyS0, unless you have a system with udev rules that create /dev/serial0 and /dev/serial1. In this case, use /dev/serial1 instead because it will always be correct. If cmdline.txt uses the alias serial0 to refer to the user-accessible port, the firmware will replace it with the appropriate port whether or not this overlay is used.</p>
+<p>There are other UART-specific overlays in the folder. Refer to <code>/boot/overlays/README</code> for details on Device Tree Overlays, or run <code>dtoverlay -h overlay-name</code> for descriptions and usage information.</p>
+<p>For full instructions on how to use Device Tree Overlays see <a href="https://www.raspberrypi.org/documentation/configuration/device-tree.md">this page</a>. In brief, add a line to the <code>config.txt</code> file to enable Device Tree Overlays. Note that the <code>-overlay.dts</code> part of the filename is removed.</p>
+<pre><code>...
+dtoverlay=disable-bt
+...</code></pre>
+<h2>Relevant differences between PL011 and mini UART</h2>
+<p>The mini UART has smaller FIFOs. Combined with the lack of flow control, this makes it more prone to losing characters at higher baudrates. It is also generally less capable than the PL011, mainly due to its baud rate link to the VPU clock speed.</p>
+<p>The particular deficiencies of the mini UART compared to the PL011 are :</p>
+<ul>
+<li>No break detection</li>
+<li>No framing errors detection</li>
+<li>No parity bit</li>
+<li>No receive timeout interrupt</li>
+<li>No DCD, DSR, DTR or RI signals </li>
+</ul>
+<p>Further documentation on the mini UART can be found in the SoC peripherals document <a href="https://www.raspberrypi.org/documentation/hardware/raspberrypi/bcm2835/BCM2835-ARM-Peripherals.pdf">here</a>.</p></article>
+
+                <footer class="licence">
+                    <aside class="octocat">
+                        <a href="https://github.com/raspberrypi/documentation/blob/master/configuration/uart.md"><img src="./The Raspberry Pi UARTs - Raspberry Pi Documentation_files/octocat.jpg"></a>
+                    </aside>
+                    <aside class="links">
+                        <a href="https://github.com/raspberrypi/documentation/blob/master/configuration/uart.md" class="github">View/Edit this page on GitHub</a><br>
+                        <a href="https://www.raspberrypi.org/creative-commons/">Read our usage and contributions policy</a><br>
+                        <a href="https://www.raspberrypi.org/creative-commons/" class="cc"><img src="./The Raspberry Pi UARTs - Raspberry Pi Documentation_files/88x31.png" alt="Creative Commons Licence"></a>
+                    </aside>
+                </footer>
+
+                <div style="clear: both;"></div>
+
+            </div>
+
+        <div style="clear: both;"></div>
+    </div>
+
+    <footer class="o-footer">
+        <div class="o-footer__slice">
+            <div class="o-container o-footer__container">
+                <div class="o-footer__nav">
+                    <div class="c-footer-nav">
+                        <span class="c-footer-nav__title">About Us</span>
+
+                        <ul class="c-footer-nav__list">
+                            <li class="c-footer-nav__item">
+                                <a class="c-footer-nav__link" href="https://www.raspberrypi.org/about">About us</a>
+                            </li>
+                            <li class="c-footer-nav__item">
+                                <a class="c-footer-nav__link" href="https://www.raspberrypi.org/about/meet-the-team">Our team</a>
+                            </li>
+                            <li class="c-footer-nav__item">
+                                <a class="c-footer-nav__link" href="https://www.raspberrypi.org/about/governance">Governance</a>
+                            </li>
+                            <li class="c-footer-nav__item">
+                                <a class="c-footer-nav__link" href="https://www.raspberrypi.org/safeguarding">Safeguarding</a>
+                            </li>
+                            <li class="c-footer-nav__item">
+                                <a class="c-footer-nav__link" href="https://www.raspberrypi.org/about/supporters">Our supporters</a>
+                            </li>
+                            <li class="c-footer-nav__item">
+                                <a class="c-footer-nav__link" href="https://raspberrypi.workable.com/">Jobs</a>
+                            </li>
+                            <li class="c-footer-nav__item">
+                                <a class="c-footer-nav__link" href="https://www.raspberrypi.org/contact">Contact us</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="o-footer__nav">
+                    <div class="c-footer-nav">
+                        <span class="c-footer-nav__title">Support</span>
+
+                        <ul class="c-footer-nav__list">
+                            <li class="c-footer-nav__item">
+                                <a class="c-footer-nav__link" href="https://www.raspberrypi.org/help">Help</a>
+                            </li>
+                            <li class="c-footer-nav__item">
+                                <a class="c-footer-nav__link" href="https://www.raspberrypi.org/documentation">Documentation</a>
+                            </li>
+                            <li class="c-footer-nav__item">
+                                <a class="c-footer-nav__link" href="https://projects.raspberrypi.org/">Projects</a>
+                            </li>
+                            <li class="c-footer-nav__item">
+                                <a class="c-footer-nav__link" href="https://www.raspberrypi.org/training">Training</a>
+                            </li>
+                            <li class="c-footer-nav__item">
+                                <a class="c-footer-nav__link" href="https://www.raspberrypi.org/downloads">Downloads</a>
+                            </li>
+                            <li class="c-footer-nav__item">
+                                <a class="c-footer-nav__link" href="https://www.raspberrypi.org/research-and-insights">Research</a>
+                            </li>
+                            <li class="c-footer-nav__item">
+                                <a class="c-footer-nav__link" href="https://www.raspberrypi.org/help/faqs">FAQ</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="o-footer__newsletter">
+                    <form action="https://raspberrypi.hosted.phplist.com/lists/?p=subscribe&amp;id=1" class="c-footer-newsletter" method="POST">
+                        <span class="c-footer-newsletter__legend">
+                            Sign up to our newsletter
+                        </span>
+                        <input class="c-footer-newsletter__input" name="email" placeholder="Your email here" required="" type="email">
+                        <input type="hidden" name="htmlemail" value="1">
+                        <input type="hidden" name="list[3]" value="signup">
+                        <input type="hidden" name="listname[3]" value="Raspberry Pi Weekly">
+                        <input class="c-footer-newsletter__input--verification-code" type="text" name="VerificationCodeX" value="" size="20">
+                        <button class="c-footer-newsletter__button" name="subscribe">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+
+                <div class="o-footer__info">
+                    <ul class="c-footer-social">
+                        <li class="c-footer-social__item">
+                            <a class="c-footer-social__link c-footer-social__link--facebook" href="https://www.facebook.com/raspberrypi">
+                                <span class="u-visually-hidden">Like Raspberry Pi on Facebook</span>
+                            </a>
+                        </li>
+                        <li class="c-footer-social__item">
+                            <a class="c-footer-social__link c-footer-social__link--twitter" href="https://twitter.com/Raspberry_Pi">
+                                <span class="u-visually-hidden">Follow Raspberry Pi on Twitter</span>
+                            </a>
+                        </li>
+                        <li class="c-footer-social__item">
+                            <a class="c-footer-social__link c-footer-social__link--instagram" href="https://www.instagram.com/raspberrypifoundation/">
+                                <span class="u-visually-hidden">Check out what we’re having for lunch on Instagram</span>
+                            </a>
+                        </li>
+                        <li class="c-footer-social__item">
+                            <a class="c-footer-social__link c-footer-social__link--youtube" href="https://youtube.com/raspberrypi">
+                                <span class="u-visually-hidden">Subscribe to the Raspberry Pi YouTube channel</span>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <p class="c-footer-charity">
+                        Raspberry Pi Foundation<br>
+                        UK Registered Charity 1129409
+                    </p>
+
+                    <p class="c-footer-additional">
+                        <a class="c-footer-additional__link" href="https://www.raspberrypi.org/privacy">Privacy</a>
+                        <a class="c-footer-additional__link" href="https://www.raspberrypi.org/cookies">Cookies</a>
+                        <a class="c-footer-additional__link" href="https://www.raspberrypi.org/trademark-rules">Trademark rules and brand guidelines</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+</body></html>
