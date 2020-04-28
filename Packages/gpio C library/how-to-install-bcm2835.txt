@@ -1,0 +1,13 @@
+1.安装
+tar zxvf bcm2835-1.xx.tar.gz
+cd bcm2835-1.xx
+./configure
+make
+sudo make check
+sudo make install
+
+2.编译后会生成一个头文件 bcm2835.h和一个lib库文件，分别位于/usr/local/include,/usr/local/lib
+
+3.调用接口需包含头文件 bcm2835.h
+
+4.编译时需要指定库文件 gcc -o a.out xxx.c -l bcm2835
